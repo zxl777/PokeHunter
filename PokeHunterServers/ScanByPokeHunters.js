@@ -135,13 +135,13 @@ function CheckAllJobsCompleted()
 
 
 Reset();
-importServersQueue();
-setInterval(CheckAllJobsCompleted, 5*1000);
+// importServersQueue();
+// setInterval(CheckAllJobsCompleted, 5*1000);
 
 require('./make_search_file').make_searchfile_every30mins();
 
-kue.app.listen( 8032 );
-console.log( 'Kue任务面板 on port 8032' );
+kue.app.listen( 8088 );
+console.log( 'Kue任务面板 on port 8088' );
 
 
 
