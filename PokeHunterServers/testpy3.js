@@ -8,7 +8,7 @@
 var python = require('child_process').spawn(
     'python',
     // second argument is array of parameters, e.g.:
-    ["./pyscan/spiral_poi_search.py"
+    ["./pyscan/huntpoke.py"
         ,'-a','google','-u','zhangxiaolong@itoytoy.com','-p','18879bbb','-l','"Los Angeles"']
 );
 var output = "";

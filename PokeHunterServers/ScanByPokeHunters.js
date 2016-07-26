@@ -1,7 +1,6 @@
 var kue     = require( 'kue' );         // https://github.com/Automattic/kue
 var express = require( 'express' );     // https://github.com/expressjs/express
 var redis = require('redis');           // https://github.com/NodeRedis/node_redis
-var mcpeping = require('mcpe-ping');
 
 var client = redis.createClient();
 var startTime=(new Date()).getTime();
@@ -14,7 +13,7 @@ var jobs = kue.createQueue({
         port: 6379,
         host: '127.0.0.1',
         auth: '',
-        db: 8,
+        db: 5,
         options: {
             // see https://github.com/mranney/node_redis#rediscreateclient
         }
@@ -59,52 +58,42 @@ function importServersQueue()
 
 
 //自动测试队列里的任务
-jobs.process( 'Ping Server', 18, function ( job, done )
-{
+jobs.process( 'Ping Server', 1, function ( job, done ) {
     var host = job.data.server.split(':');
     var id = job.data.server;
 
+    var python = require('child_process').spawn(
+        'python',
+        // second argument is array of parameters, e.g.:
+        ["./pyscan/spiral_poi_search.py"
+            , '-a', 'google', '-u', 'zhangxiaolong@itoytoy.com', '-p', '18879bbb', '-l', '"Los Angeles"']
+    );
+    var output = "";
+    python.stdout.on('data', function (data) {
+        output += data
+    });
 
-    mcpeping(host[0], Number(host[1]), function(err, res)
+    python.stderr.on('data', (data) =>
     {
-        if (err) //服务器下线
-        {
-            client.ZREM('servers:order_by_voted',id);
-            done(new Error(err.description));
-        }
-        else //服务器在线，ping到了
-        {
-            //http://redis.io/commands/hmset 设置一个Hash Member，一个服务器的完整信息
-            var title = res.cleanName.trim();
-            title = title.replace(/\n/g,'');
-
-            client.multi()
-                .HMSET( // 先按ping到的服务器数据，更新server信息。
-                    'server:'+id,
-                    'id',id,
-                    'host',host[0],
-                    'port',Number(host[1]),
-                    'title',title,
-                    //'title',res.cleanName,
-                    'version',res.version,
-                    'currentPlayers',res.currentPlayers,
-                    'maxPlayers',res.maxPlayers)
-                .HGET('server:'+id,'voted')
-                .exec(function (err, replies)
-                {
-                    if (Number(res.currentPlayers)>1)
-                        client.ZADD('servers:order_by_voted',Number(replies[1]),id);
-                    else
-                        client.ZADD('servers:order_by_voted',0,id);
-                        // client.ZREM('servers:order_by_voted',id);
-                });
-
-            //Bug：servers:queue 如果删除了一个服务器，servers:online始终没有删掉。因为机器人只知道添加和更新。
-            done();
-        }
-    }, 3000);
+        console.log(`stderr: ${data}`);
 });
 
+
+    python.on('close', (code) =>
+    {
+        console.log(`exit code=${code}`);
+
+    if (code == 0) {
+        console.log(`res=${output}`);
+        var obj = JSON.parse(output);
+        console.log("json=", obj);
+        done();
+    }
+    else
+        done(new Error('error'));
+
+    });
+});
 
 
 // 定时检查任务是否完成
