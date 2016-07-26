@@ -202,8 +202,8 @@ def find_poi(api, lat, lng):
 
     #zxl
     #print('POI dictionary: \n\r{}'.format(pprint.PrettyPrinter(indent=4).pformat(poi)))
-    print('Open this in a browser to see the path the spiral search took:')
-    print_gmaps_dbug(coords)
+    # print('Open this in a browser to see the path the spiral search took:')
+    # print_gmaps_dbug(coords)
 
 def get_key_from_pokemon(pokemon):
     return '{}-{}'.format(pokemon['spawnpoint_id'], pokemon['pokemon_data']['pokemon_id'])

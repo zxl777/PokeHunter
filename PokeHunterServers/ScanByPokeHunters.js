@@ -43,10 +43,11 @@ function importServersQueue()
         values.forEach(function(line)
         {
             //console.log( line );
-            jobs.create( 'Ping Server',
+            jobs.create( 'HuntPoint',
                 {
-                title: 'Ping ' + line ,
-                server: line
+                title: 'To Hunt ' + 'Los Angeles' , //任务栏的标题
+                placename:'Los Angeles',            //传送给任务处理程序的地名
+                point: line                         //传送给任务处理程序的坐标
                 } ).priority('normal').save();
         });
     });
@@ -58,14 +59,15 @@ function importServersQueue()
 
 
 //自动测试队列里的任务
-jobs.process( 'Ping Server', 1, function ( job, done ) {
-    var host = job.data.server.split(':');
-    var id = job.data.server;
+jobs.process( 'HuntPoint', 1, function ( job, done ) {
+    // var host = job.data.server.split(':');
+    // var id = job.data.server;
 
     var python = require('child_process').spawn(
         'python',
         // second argument is array of parameters, e.g.:
-        ["./pyscan/spiral_poi_search.py"
+        // ["./pyscan/spiral_poi_search.py"
+            ["./pyscan/huntpoke.py"
             , '-a', 'google', '-u', 'zhangxiaolong@itoytoy.com', '-p', '18879bbb', '-l', '"Los Angeles"']
     );
     var output = "";
@@ -87,10 +89,15 @@ jobs.process( 'Ping Server', 1, function ( job, done ) {
         console.log(`res=${output}`);
         var obj = JSON.parse(output);
         console.log("json=", obj);
+        job.log("json=", obj);
         done();
     }
     else
+    {
+        job.log("error=", output);
         done(new Error('error'));
+    }
+
 
     });
 });
