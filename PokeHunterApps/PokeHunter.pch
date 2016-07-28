@@ -1,0 +1,47 @@
+//
+//  PokeHunter.pch
+//  Poke Hunter
+//
+//  Created by sky on 16/7/28.
+//  Copyright © 2016年 iToyToy Limited. All rights reserved.
+//
+
+@import Firebase;
+@import GoogleMobileAds;
+@import FirebaseRemoteConfig;
+@import FirebaseCrash;
+@import CocoaSecurity;
+
+
+#ifndef PokeHunter_pch
+#define PokeHunter_pch
+
+#ifdef FIRCRASH_REPLACE_NSLOG
+#if defined(DEBUG) || defined(FIRCRASH_LOG_TO_CONSOLE)
+#define NSLog(...) FIRCrashNSLog(__VA_ARGS__)
+#define NSLogv(...) FIRCrashNSLogv(__VA_ARGS__)
+#else
+#define NSLog(...) FIRCrashLog(__VA_ARGS__)
+#define NSLogv(...) FIRCrashLogv(__VA_ARGS__)
+#endif
+#endif
+
+
+#import <MessageUI/MFMailComposeViewController.h>
+
+#import "AFNetworking.h" // https://github.com/AFNetworking/AFNetworking
+
+
+#import "APIClient.h"
+
+#import "SVProgressHUD.h" //https://github.com/SVProgressHUD/SVProgressHUD
+
+#import "Colours.h"
+
+#import <FirebaseCrash/FirebaseCrash.h>
+#import "CALayer+XibConfiguration.h" //http://stackoverflow.com/questions/12301256/is-it-possible-to-set-uiview-border-properties-from-interface-builder/17993890#17993890
+
+
+
+
+#endif /* PokeHunter_pch */

@@ -1,0 +1,22 @@
+platform :ios,'8.0'
+
+source 'https://github.com/CocoaPods/Specs.git'
+
+use_frameworks!
+
+target "Poke Hunter" do
+    pod 'SVProgressHUD'
+    pod 'AFNetworking', '~> 3.0'
+    pod 'Colours' # https://github.com/bennyguitar/Colours
+    
+    pod 'Firebase' # https://firebase.google.com/docs/ios/setup#add_the_sdk
+    pod 'Firebase/Crash'
+    pod 'Firebase/Messaging'
+    pod 'Firebase/AdMob'
+    pod 'Firebase/RemoteConfig'
+    
+    pod 'SSKeychain' #https://github.com/soffes/SSKeychain
+    pod 'CocoaSecurity' #https://github.com/kelp404/CocoaSecurity
+ end
+
+
