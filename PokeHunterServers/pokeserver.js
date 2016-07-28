@@ -52,7 +52,22 @@ app.post('/v1/addscanjob', function(req, res)
 });
 
 
+app.get('/v1/pokehub',function (req, res)
+{
+    var coord = req.query.coord;
+    client.HVALS('PokeHub:'+coord,function(err,info)
+    {
+        // console.log(err);
+        var json=[];
 
+        for (var line of info)
+        {
+            json.push(JSON.parse(line));
+        }
+
+        res.json(json);
+    });
+});
 
 //获得服务器列表 http://play.itoytoy.com:3000/servers?page=3
 app.get('/servers', getServersByPage);

@@ -3,9 +3,6 @@ var express = require( 'express' );     // https://github.com/expressjs/express
 var redis = require('redis');           // https://github.com/NodeRedis/node_redis
 
 var client = redis.createClient();
-var startTime=(new Date()).getTime();
-var DoCheck=true;
-
 
 var jobs = kue.createQueue({
     prefix: 'q',
@@ -21,53 +18,17 @@ var jobs = kue.createQueue({
 });
 
 
-// 将队列复位，清空redis内存
-function Reset()
-{
-    kue.Job.range(0, -1, 'asc', function( err, jobs ) {
-        jobs.forEach( function( job ) {
-            job.remove( function(){
-                //console.log( 'removed ', job.id );
-            });
-        });
-    });
-}
-
-
-//将服务器库存导入，待检测
-function importServersQueue()
-{
-    // SET servers:queue
-    client.smembers('servers:queue', function (err, values)
-    {
-        values.forEach(function(line)
-        {
-            //console.log( line );
-            jobs.create( 'HuntPoint',
-                {
-                title: 'To Hunt ' + 'Los Angeles' , //任务栏的标题
-                placename:'Los Angeles',            //传送给任务处理程序的地名
-                point: line                         //传送给任务处理程序的坐标
-                } ).priority('normal').save();
-        });
-    });
-}
-
-
-//jobs.create 用来添加任务
-//这个是kue的任务处理器process,会自动处理队列里的任务。
-
-
 //自动测试队列里的任务
 jobs.process( 'HuntPoint', 1, function ( job, done ) {
     // var host = job.data.server.split(':');
     // var id = job.data.server;
 
+
     var python = require('child_process').spawn(
         'python',
         // second argument is array of parameters, e.g.:
         // ["./pyscan/spiral_poi_search.py"
-            ["./pyscan/huntpoke.py"
+            ["./pyscan/huntpoke-quicktest.py"
             , '-a', 'google', '-u', 'zhangxiaolong@itoytoy.com', '-p', '18879bbb', '-l', '"Los Angeles"']
     );
     var output = "";
@@ -90,6 +51,8 @@ jobs.process( 'HuntPoint', 1, function ( job, done ) {
         var obj = JSON.parse(output);
         console.log("json=", obj);
         job.log("json=", obj);
+        // 任务完成,把pokemon数据写到redis
+
         done();
     }
     else
@@ -131,15 +94,51 @@ function CheckAllJobsCompleted()
 }
 
 
+function writePokeJson(coordkey,json1)
+{
+    var fs = require('fs');
+    var json = JSON.parse(fs.readFileSync('./pyscan/test.json', 'utf8'));
+
+    // console.log(json["pokemons"]['80c2c645d7d-41']);
+    var multi = client.multi();
+
+    var i=0;
+
+
+
+    for (var key in json.pokemons)
+    {
+        // console.log('poke=',json.pokemons[key]);
+        var poke = json.pokemons[key];
+
+        multi.HSET(
+            coordkey,
+            i++,
+            JSON.stringify({'livetime':poke.last_modified_timestamp_ms + poke.time_till_hidden_ms,
+            'pokeid':poke.pokemon_data.pokemon_id,
+            'longitude':poke.longitude,
+            'latitude':poke.latitude})
+        );
+
+        multi.GEOADD(
+            'PokesGEO',
+            poke.longitude,
+            poke.latitude,
+            poke.pokemon_data.pokemon_id+':'+(poke.last_modified_timestamp_ms + poke.time_till_hidden_ms)+':'+(i++)
+        );
+    }
+
+    multi.exec(function (err, replies)
+    {
+
+    });
+
+    //写入hash
+}
+
 // start the UI
 
-
-Reset();
-// importServersQueue();
-// setInterval(CheckAllJobsCompleted, 5*1000);
-
-require('./make_search_file').make_searchfile_every30mins();
-
+writePokeJson("PokeHub:34.0522342,-118.2436849",'');
 kue.app.listen( 8088 );
 console.log( 'Kue任务面板 on port 8088' );
 
