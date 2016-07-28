@@ -27,6 +27,8 @@
 #endif
 #endif
 
+#import "BasicMapAnnotation.h"
+
 
 #import <MessageUI/MFMailComposeViewController.h>
 

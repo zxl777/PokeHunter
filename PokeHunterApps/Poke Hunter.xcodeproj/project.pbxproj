@@ -14,6 +14,7 @@
 		33078B531D49CE0A00367B1F /* help@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33078B511D49CE0A00367B1F /* help@2x.png */; };
 		33078B541D49CE0A00367B1F /* scan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33078B521D49CE0A00367B1F /* scan@2x.png */; };
 		33078B571D49D91300367B1F /* Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 33078B561D49D91300367B1F /* Map.m */; };
+		33078B5A1D4A2FBD00367B1F /* BasicMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 33078B591D4A2FBD00367B1F /* BasicMapAnnotation.m */; };
 		3388D0CD1D49B839009BC34B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3388D0CC1D49B839009BC34B /* main.m */; };
 		3388D0D01D49B839009BC34B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3388D0CF1D49B839009BC34B /* AppDelegate.m */; };
 		3388D0D61D49B839009BC34B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3388D0D41D49B839009BC34B /* Main.storyboard */; };
@@ -34,6 +35,8 @@
 		33078B521D49CE0A00367B1F /* scan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scan@2x.png"; sourceTree = "<group>"; };
 		33078B551D49D91300367B1F /* Map.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Map.h; sourceTree = "<group>"; };
 		33078B561D49D91300367B1F /* Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Map.m; sourceTree = "<group>"; };
+		33078B581D4A2FBD00367B1F /* BasicMapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicMapAnnotation.h; sourceTree = "<group>"; };
+		33078B591D4A2FBD00367B1F /* BasicMapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicMapAnnotation.m; sourceTree = "<group>"; };
 		3388D0C81D49B839009BC34B /* Poke Hunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Poke Hunter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3388D0CC1D49B839009BC34B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3388D0CE1D49B839009BC34B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -62,6 +65,8 @@
 		3388D0BF1D49B839009BC34B = {
 			isa = PBXGroup;
 			children = (
+				33078B581D4A2FBD00367B1F /* BasicMapAnnotation.h */,
+				33078B591D4A2FBD00367B1F /* BasicMapAnnotation.m */,
 				33078B511D49CE0A00367B1F /* help@2x.png */,
 				33078B521D49CE0A00367B1F /* scan@2x.png */,
 				33078B4F1D49CA8500367B1F /* Search@2x.png */,
@@ -252,6 +257,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				33078B5A1D4A2FBD00367B1F /* BasicMapAnnotation.m in Sources */,
 				33078B571D49D91300367B1F /* Map.m in Sources */,
 				33078B4E1D49C5A700367B1F /* APIClient.m in Sources */,
 				33078B4B1D49C51700367B1F /* CALayer+XibConfiguration.m in Sources */,
