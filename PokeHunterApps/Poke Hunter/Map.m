@@ -14,24 +14,31 @@
 
 @implementation Map
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+ 
+    self.Map.showsCompass = YES; // 是否显示指南针
+    self.Map.showsScale = YES; // 是否显示比例尺
+    self.Map.userTrackingMode = MKUserTrackingModeFollowWithHeading;
+    
+    CLLocationCoordinate2D center =  CLLocationCoordinate2DMake(34.0522342,-118.2436849);
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.01, 0.01);
+    MKCoordinateRegion region = MKCoordinateRegionMake(center, span);
+    
+    [self.Map setRegion:region animated:YES];
+}
+
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
