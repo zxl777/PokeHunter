@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  Map.h
 //  Poke Hunter
 //
 //  Created by sky on 16/7/28.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface Map : UIViewController
 
 @end
-
