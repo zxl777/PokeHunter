@@ -116,7 +116,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     //设置格式：zzz表示时区
 //    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
-    [dateFormatter setDateFormat:@"HH:mm:ss"];
+    [dateFormatter setDateFormat:@"mm:ss"];
     //NSDate转NSString
     NSString *currentDateString = [dateFormatter stringFromDate:currentDate];
     

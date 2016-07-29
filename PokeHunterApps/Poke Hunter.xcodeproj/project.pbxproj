@@ -15,7 +15,6 @@
 		33078B541D49CE0A00367B1F /* scan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33078B521D49CE0A00367B1F /* scan@2x.png */; };
 		33078B571D49D91300367B1F /* Map.m in Sources */ = {isa = PBXBuildFile; fileRef = 33078B561D49D91300367B1F /* Map.m */; };
 		33078B5A1D4A2FBD00367B1F /* BasicMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 33078B591D4A2FBD00367B1F /* BasicMapAnnotation.m */; };
-		33078B5C1D4B0C7800367B1F /* pokepngs in Resources */ = {isa = PBXBuildFile; fileRef = 33078B5B1D4B0C7800367B1F /* pokepngs */; };
 		33078B5E1D4B104D00367B1F /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = 33078B5D1D4B104D00367B1F /* 8.png */; };
 		3388D0CD1D49B839009BC34B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3388D0CC1D49B839009BC34B /* main.m */; };
 		3388D0D01D49B839009BC34B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3388D0CF1D49B839009BC34B /* AppDelegate.m */; };
@@ -39,7 +38,6 @@
 		33078B561D49D91300367B1F /* Map.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Map.m; sourceTree = "<group>"; };
 		33078B581D4A2FBD00367B1F /* BasicMapAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BasicMapAnnotation.h; sourceTree = "<group>"; };
 		33078B591D4A2FBD00367B1F /* BasicMapAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BasicMapAnnotation.m; sourceTree = "<group>"; };
-		33078B5B1D4B0C7800367B1F /* pokepngs */ = {isa = PBXFileReference; lastKnownFileType = folder; path = pokepngs; sourceTree = "<group>"; };
 		33078B5D1D4B104D00367B1F /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 8.png; path = pokepngs/8.png; sourceTree = "<group>"; };
 		3388D0C81D49B839009BC34B /* Poke Hunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Poke Hunter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3388D0CC1D49B839009BC34B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -70,7 +68,6 @@
 			isa = PBXGroup;
 			children = (
 				33078B5D1D4B104D00367B1F /* 8.png */,
-				33078B5B1D4B0C7800367B1F /* pokepngs */,
 				33078B581D4A2FBD00367B1F /* BasicMapAnnotation.h */,
 				33078B591D4A2FBD00367B1F /* BasicMapAnnotation.m */,
 				33078B511D49CE0A00367B1F /* help@2x.png */,
@@ -206,7 +203,6 @@
 				33078B531D49CE0A00367B1F /* help@2x.png in Resources */,
 				33078B5E1D4B104D00367B1F /* 8.png in Resources */,
 				33078B541D49CE0A00367B1F /* scan@2x.png in Resources */,
-				33078B5C1D4B0C7800367B1F /* pokepngs in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
