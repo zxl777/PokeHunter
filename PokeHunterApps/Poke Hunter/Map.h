@@ -10,7 +10,11 @@
 
 
 @interface Map : UIViewController
-
+{
+    NSMutableArray *pins;
+    bool flag;
+    NSString *imgname;
+}
 
 @property (weak, nonatomic) IBOutlet MKMapView *Map;
 

@@ -34,7 +34,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="9db-KU-8Zm">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" image="scan.png" id="bIF-HD-6iS"/>
+                        <barButtonItem key="leftBarButtonItem" image="scan.png" id="bIF-HD-6iS">
+                            <connections>
+                                <action selector="TapedScan:" destination="BYZ-38-t0r" id="KqX-cs-Hm0"/>
+                            </connections>
+                        </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="EwY-l9-WHI">
                             <rect key="frame" x="78" y="5.5" width="219" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -58,6 +62,9 @@
                                             <color key="value" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <segue destination="Imy-qY-ESu" kind="show" id="adM-eA-gBG"/>
+                                    </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -77,6 +84,51 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1042.5" y="-389.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tA6-e3-yyU">
+            <objects>
+                <viewController id="Imy-qY-ESu" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gqg-Cq-8wl"/>
+                        <viewControllerLayoutGuide type="bottom" id="Akp-UB-kgv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="NcS-Fp-8Lr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LNe-uQ-C5Q">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Imy-qY-ESu" id="Zvd-yh-Vsd"/>
+                                </connections>
+                            </searchBar>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xps-Qc-lbB">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Title" id="CEr-gD-iNx"/>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="searchDisplayController" destination="hA6-Zj-yPI" id="2b8-rn-bKc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gam-Rw-2gK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="hA6-Zj-yPI">
+                    <connections>
+                        <outlet property="delegate" destination="Imy-qY-ESu" id="UAL-kp-ZHb"/>
+                        <outlet property="searchBar" destination="LNe-uQ-C5Q" id="aHl-bt-ef2"/>
+                        <outlet property="searchContentsController" destination="Imy-qY-ESu" id="lrf-bq-Fg4"/>
+                        <outlet property="searchResultsDataSource" destination="Imy-qY-ESu" id="oyj-6b-5ts"/>
+                        <outlet property="searchResultsDelegate" destination="Imy-qY-ESu" id="yhV-wN-AsF"/>
+                    </connections>
+                </searchDisplayController>
+            </objects>
+            <point key="canvasLocation" x="1580.5" y="-389.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="I3e-H5-Onk">

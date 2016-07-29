@@ -17,6 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    pins = [NSMutableArray array];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -33,10 +34,33 @@
     
     [self.Map setRegion:region animated:YES];
 
+    
+    imgname =@"scan";
+    flag = YES;
+    
     BasicMapAnnotation *annotation=[[BasicMapAnnotation alloc] initWithLatitude:34.0522342 andLongitude:-118.2436849 tag:0];
+    
+    [pins addObject:annotation];
     
     annotation.title = @"Hello";
     [self.Map addAnnotation:annotation];
+    
+    
+    
+    NSTimer *TestingTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(TickUdpPing) userInfo:nil repeats:YES];
+}
+
+-(void)TickUdpPing
+{
+    [self.Map removeAnnotations:pins];
+    if (flag)
+    imgname =@"scan";
+    else
+    imgname = @"help";
+    
+    flag=!flag;
+    
+    [self.Map addAnnotations:pins];
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,11 +84,17 @@
     view.rightCalloutAccessoryView = disclosure;
     
     view.enabled = YES;
-    view.image = [UIImage imageNamed:@"scan"];
+    view.image = [UIImage imageNamed:imgname];
     
     view.canShowCallout = YES;
     
     return view;
+}
+
+
+- (IBAction)TapedScan:(id)sender
+{
+    [self.Map removeAnnotations:pins];
 }
 
 
