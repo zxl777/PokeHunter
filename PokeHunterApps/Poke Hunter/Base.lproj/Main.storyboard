@@ -116,7 +116,11 @@
                                 <constraint firstAttribute="trailing" secondItem="SMh-L3-E3i" secondAttribute="trailing" id="sZC-W9-OYV"/>
                             </constraints>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" image="help.png" id="3uN-ni-gNP"/>
+                        <barButtonItem key="rightBarButtonItem" image="help.png" id="3uN-ni-gNP">
+                            <connections>
+                                <segue destination="cIQ-Qr-Rae" kind="show" id="LWJ-HM-nUk"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="Map" destination="BPv-0Z-GLS" id="D8W-P5-HvX"/>
@@ -129,50 +133,39 @@
             </objects>
             <point key="canvasLocation" x="1042.5" y="-389.5"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="tA6-e3-yyU">
+        <!--How To Use?-->
+        <scene sceneID="FII-l8-ohn">
             <objects>
-                <viewController id="Imy-qY-ESu" sceneMemberID="viewController">
+                <viewController id="cIQ-Qr-Rae" customClass="Help" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="gqg-Cq-8wl"/>
-                        <viewControllerLayoutGuide type="bottom" id="Akp-UB-kgv"/>
+                        <viewControllerLayoutGuide type="top" id="zTD-OW-PFU"/>
+                        <viewControllerLayoutGuide type="bottom" id="jh3-Oj-Gt9"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="NcS-Fp-8Lr">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <view key="view" contentMode="scaleToFill" id="REZ-ab-eDX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LNe-uQ-C5Q">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="Imy-qY-ESu" id="Zvd-yh-Vsd"/>
-                                </connections>
-                            </searchBar>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xps-Qc-lbB">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <items>
-                                    <navigationItem title="Title" id="CEr-gD-iNx"/>
-                                </items>
-                            </navigationBar>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SFd-ak-0LG">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="deviceRGB"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SFd-ak-0LG" firstAttribute="leading" secondItem="REZ-ab-eDX" secondAttribute="leading" id="IxL-e6-1DC"/>
+                            <constraint firstAttribute="trailing" secondItem="SFd-ak-0LG" secondAttribute="trailing" id="dLU-eR-eGU"/>
+                            <constraint firstItem="jh3-Oj-Gt9" firstAttribute="top" secondItem="SFd-ak-0LG" secondAttribute="bottom" id="tdh-tL-Wcx"/>
+                            <constraint firstItem="SFd-ak-0LG" firstAttribute="top" secondItem="zTD-OW-PFU" secondAttribute="bottom" id="vBJ-L7-7aX"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="How To Use?" id="UId-yj-y0a"/>
                     <connections>
-                        <outlet property="searchDisplayController" destination="hA6-Zj-yPI" id="2b8-rn-bKc"/>
+                        <outlet property="Web" destination="SFd-ak-0LG" id="cDX-qk-BsI"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Gam-Rw-2gK" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="hA6-Zj-yPI">
-                    <connections>
-                        <outlet property="delegate" destination="Imy-qY-ESu" id="UAL-kp-ZHb"/>
-                        <outlet property="searchBar" destination="LNe-uQ-C5Q" id="aHl-bt-ef2"/>
-                        <outlet property="searchContentsController" destination="Imy-qY-ESu" id="lrf-bq-Fg4"/>
-                        <outlet property="searchResultsDataSource" destination="Imy-qY-ESu" id="oyj-6b-5ts"/>
-                        <outlet property="searchResultsDelegate" destination="Imy-qY-ESu" id="yhV-wN-AsF"/>
-                    </connections>
-                </searchDisplayController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Yqz-id-r0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1580.5" y="-389.5"/>
+            <point key="canvasLocation" x="1568.5" y="-389.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="I3e-H5-Onk">

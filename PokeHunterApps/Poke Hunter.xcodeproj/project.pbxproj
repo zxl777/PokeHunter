@@ -166,6 +166,7 @@
 		33078DBC1D4B4EEF00367B1F /* 98@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33078D251D4B4EEF00367B1F /* 98@2x.png */; };
 		33078DBD1D4B4EEF00367B1F /* 99@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33078D261D4B4EEF00367B1F /* 99@2x.png */; };
 		33078DBE1D4B4EEF00367B1F /* 9@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 33078D271D4B4EEF00367B1F /* 9@2x.png */; };
+		33078DC11D4B983100367B1F /* Help.m in Sources */ = {isa = PBXBuildFile; fileRef = 33078DC01D4B983100367B1F /* Help.m */; };
 		3388D0CD1D49B839009BC34B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3388D0CC1D49B839009BC34B /* main.m */; };
 		3388D0D01D49B839009BC34B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3388D0CF1D49B839009BC34B /* AppDelegate.m */; };
 		3388D0D61D49B839009BC34B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3388D0D41D49B839009BC34B /* Main.storyboard */; };
@@ -339,6 +340,8 @@
 		33078D251D4B4EEF00367B1F /* 98@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "98@2x.png"; sourceTree = "<group>"; };
 		33078D261D4B4EEF00367B1F /* 99@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "99@2x.png"; sourceTree = "<group>"; };
 		33078D271D4B4EEF00367B1F /* 9@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "9@2x.png"; sourceTree = "<group>"; };
+		33078DBF1D4B983100367B1F /* Help.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Help.h; sourceTree = "<group>"; };
+		33078DC01D4B983100367B1F /* Help.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Help.m; sourceTree = "<group>"; };
 		3388D0C81D49B839009BC34B /* Poke Hunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Poke Hunter.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3388D0CC1D49B839009BC34B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3388D0CE1D49B839009BC34B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -525,6 +528,8 @@
 		3388D0BF1D49B839009BC34B = {
 			isa = PBXGroup;
 			children = (
+				33078DBF1D4B983100367B1F /* Help.h */,
+				33078DC01D4B983100367B1F /* Help.m */,
 				33078C901D4B4EEF00367B1F /* pokepngs */,
 				33078B581D4A2FBD00367B1F /* BasicMapAnnotation.h */,
 				33078B591D4A2FBD00367B1F /* BasicMapAnnotation.m */,
@@ -874,6 +879,7 @@
 				33078B4E1D49C5A700367B1F /* APIClient.m in Sources */,
 				33078B4B1D49C51700367B1F /* CALayer+XibConfiguration.m in Sources */,
 				3388D0D01D49B839009BC34B /* AppDelegate.m in Sources */,
+				33078DC11D4B983100367B1F /* Help.m in Sources */,
 				3388D0CD1D49B839009BC34B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
