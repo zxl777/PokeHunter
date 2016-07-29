@@ -4,7 +4,9 @@
 
 
 //static NSString * const APIBaseURLString = @"http://192.168.1.183:3000/";
-static NSString * const APIBaseURLString = @"http://play.itoytoy.com:3000/";
+//static NSString * const APIBaseURLString = @"http://play.itoytoy.com:3000/";
+
+static NSString * const APIBaseURLString = @"http://192.168.1.183:8080/";
 
 @implementation APIClient
 

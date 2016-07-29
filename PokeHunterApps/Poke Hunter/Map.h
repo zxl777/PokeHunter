@@ -15,6 +15,7 @@
     bool flag;
     NSString *imgname;
     NSTimer *PinsTimer;
+    NSMutableArray *pokes;
 }
 
 @property (weak, nonatomic) IBOutlet MKMapView *Map;

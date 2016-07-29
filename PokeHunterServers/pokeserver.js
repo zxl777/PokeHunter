@@ -70,6 +70,27 @@ app.get('/v1/pokehub',function (req, res)
 });
 
 
+// 测试url:
+//      http://127.0.0.1:8080/v1/pokes?longitude=-118.23&latitude=34.048&m=1000
+//      redis> GEORADIUS PokesGEO -118.24 34.04 1000 m  WITHCOORD
+app.get('/v1/pokes',function (req, res)
+{
+    var coord = req.query.coord;
+    //redis> GEORADIUS PokesGEO -118.24 34.04 3000 m  WITHCOORD
+    client.GEORADIUS(
+        'PokesGEO',
+        req.query.longitude,//-118.24,
+        req.query.latitude,//34.04,
+        req.query.m,//1000,
+        'm',
+    'WITHCOORD',
+    function(err,info)
+    {
+        console.log(err);
+        res.json(info);
+    });
+});
+
 
 
 

@@ -18,6 +18,7 @@
 {
     [super viewDidLoad];
     pins = [NSMutableArray array];
+    pokes = [NSMutableArray array];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -34,9 +35,7 @@
     
     [self.Map setRegion:region animated:YES];
 
-    
-    imgname =@"scan";
-    flag = YES;
+    [self GetPokes];
     
     BasicMapAnnotation *annotation=[[BasicMapAnnotation alloc] initWithLatitude:34.0522342 andLongitude:-118.2436849 tag:0];
     
@@ -48,6 +47,36 @@
     
     [self StartRefreshPins];
 
+}
+
+-(void)AddPins
+{
+    
+}
+
+
+-(void)GetPokes
+{
+    [SVProgressHUD show];
+    
+    [[APIClient api] GET:@"v1/pokes?longitude=-118.23&latitude=34.048&m=1000"
+              parameters:nil
+                progress:^(NSProgress * _Nonnull downloadProgress) {}
+                 success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+     {
+         if (responseObject==nil)
+             return;
+         
+         [SVProgressHUD dismiss];
+         
+         [pokes removeAllObjects];
+         [pokes addObjectsFromArray:responseObject];
+         NSLog(@"pokes=%@",pokes);
+     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+     {
+         NSLog(@"Error: %@", error);
+         [SVProgressHUD dismiss];
+     }];
 }
 
 -(void)StartRefreshPins
