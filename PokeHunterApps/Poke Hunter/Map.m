@@ -52,15 +52,22 @@
 
 -(void)TickUdpPing
 {
-    [self.Map removeAnnotations:pins];
-//    if (flag)
-//    imgname =@"scan";
-//    else
-//    imgname = @"help";
-//    
-//    flag=!flag;
+//    BasicMapAnnotation *ann = pins[0];
+//    ann.longitude = ann.longitude+0.000001;
     
-    [self.Map addAnnotations:pins];
+    
+    BasicMapAnnotation *annotation=[[BasicMapAnnotation alloc] initWithLatitude:34.0522342 andLongitude:-118.2436849 tag:0];
+    
+    [self.Map addAnnotation:annotation];
+    [self.Map removeAnnotations:pins];
+    
+    [pins removeAllObjects];
+    [pins addObject:annotation];
+    
+//    self.Map.annotations rep
+//    [self.Map removeAnnotations:pins];
+//    
+//    [self.Map addAnnotations:pins];
 }
 
 - (void)didReceiveMemoryWarning
