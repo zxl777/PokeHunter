@@ -18,5 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *Map;
 
+@property (weak, nonatomic) IBOutlet UIView *PinView;
+@property (weak, nonatomic) IBOutlet UILabel *TimeShow;
 
 @end

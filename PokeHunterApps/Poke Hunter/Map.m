@@ -94,9 +94,24 @@
 
 - (IBAction)TapedScan:(id)sender
 {
-    [self.Map removeAnnotations:pins];
+    UIGraphicsBeginImageContextWithOptions(self.PinView.frame.size, NO, 0);
+    [self.PinView.layer renderInContext: UIGraphicsGetCurrentContext()];
+    UIImage *TakeImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        UIImageWriteToSavedPhotosAlbum(TakeImage, nil, nil, nil);
+    });
+
 }
 
+
+
+-(UIImage *)GetImg
+{
+    
+}
 
 //- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 //
