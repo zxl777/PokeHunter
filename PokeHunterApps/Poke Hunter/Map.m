@@ -37,21 +37,26 @@
 
     [self GetPokes];
     
-    BasicMapAnnotation *annotation=[[BasicMapAnnotation alloc] initWithLatitude:34.0522342 andLongitude:-118.2436849 tag:0];
-    
-    [pins addObject:annotation];
-    
-    annotation.title = @"Hello";
-    [self.Map addAnnotation:annotation];
-    
-    
-    [self StartRefreshPins];
+//    [self StartRefreshPins];
 
 }
 
 -(void)AddPins
 {
+    int tag=0;
+    for (NSArray *poke in pokes)
+    {
+        float lat=[(poke[1][1]) floatValue];
+        float lon=[(poke[1][0]) floatValue];
+        
+        BasicMapAnnotation *annotation=[[BasicMapAnnotation alloc] initWithLatitude:lat  andLongitude:lon tag:tag++];
+        annotation.title = @"Hello";
+        [pins addObject:annotation];
+        
+//        [self.Map addAnnotation:annotation];
+    }
     
+    [self.Map addAnnotations:pins];
 }
 
 
@@ -67,11 +72,14 @@
          if (responseObject==nil)
              return;
          
+         
          [SVProgressHUD dismiss];
          
          [pokes removeAllObjects];
          [pokes addObjectsFromArray:responseObject];
          NSLog(@"pokes=%@",pokes);
+         
+         [self AddPins];
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
          NSLog(@"Error: %@", error);
@@ -128,7 +136,7 @@
     view.enabled = YES;
 //    view.image = [UIImage imageNamed:imgname];
     
-    view.image =  [self GetImg];
+    view.image =  [self GetImg:annotation];
     
     view.canShowCallout = YES;
     
@@ -138,12 +146,11 @@
 
 - (IBAction)TapedScan:(id)sender
 {
-    [self GetImg];
 }
 
 
 
--(UIImage *)GetImg
+-(UIImage *)GetImg:(id<MKAnnotation>)annotation
 {
     //获取系统当前时间
     NSDate *currentDate = [NSDate date];
@@ -155,7 +162,15 @@
     //NSDate转NSString
     NSString *currentDateString = [dateFormatter stringFromDate:currentDate];
     
+    
+    NSArray *poke = pokes[((BasicMapAnnotation *)annotation).tag];
+    NSString *line = poke[0];
+    NSArray *infos =  [line componentsSeparatedByString:@":"];
+    
+    
     self.TimeShow.text = currentDateString;
+    self.PokeShow.image = [UIImage imageNamed:infos[0]];
+    
     UIGraphicsBeginImageContextWithOptions(self.PinView.frame.size, NO, 0);
     [self.PinView.layer renderInContext: UIGraphicsGetCurrentContext()];
     UIImage *TakeImage = UIGraphicsGetImageFromCurrentImageContext();

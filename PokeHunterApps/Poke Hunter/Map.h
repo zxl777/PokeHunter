@@ -22,5 +22,8 @@
 
 @property (weak, nonatomic) IBOutlet UIView *PinView;
 @property (weak, nonatomic) IBOutlet UILabel *TimeShow;
+@property (weak, nonatomic) IBOutlet UIImageView *PokeShow;
+
+
 
 @end
