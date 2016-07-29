@@ -53,12 +53,12 @@
 -(void)TickUdpPing
 {
     [self.Map removeAnnotations:pins];
-    if (flag)
-    imgname =@"scan";
-    else
-    imgname = @"help";
-    
-    flag=!flag;
+//    if (flag)
+//    imgname =@"scan";
+//    else
+//    imgname = @"help";
+//    
+//    flag=!flag;
     
     [self.Map addAnnotations:pins];
 }
@@ -84,7 +84,9 @@
     view.rightCalloutAccessoryView = disclosure;
     
     view.enabled = YES;
-    view.image = [UIImage imageNamed:imgname];
+//    view.image = [UIImage imageNamed:imgname];
+    
+    view.image =  [self GetImg];
     
     view.canShowCallout = YES;
     
@@ -94,22 +96,36 @@
 
 - (IBAction)TapedScan:(id)sender
 {
-    UIGraphicsBeginImageContextWithOptions(self.PinView.frame.size, NO, 0);
-    [self.PinView.layer renderInContext: UIGraphicsGetCurrentContext()];
-    UIImage *TakeImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        
-        UIImageWriteToSavedPhotosAlbum(TakeImage, nil, nil, nil);
-    });
-
+    [self GetImg];
 }
 
 
 
 -(UIImage *)GetImg
 {
+    //获取系统当前时间
+    NSDate *currentDate = [NSDate date];
+    //用于格式化NSDate对象
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设置格式：zzz表示时区
+//    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+    [dateFormatter setDateFormat:@"HH:mm:ss"];
+    //NSDate转NSString
+    NSString *currentDateString = [dateFormatter stringFromDate:currentDate];
+    
+    self.TimeShow.text = currentDateString;
+    UIGraphicsBeginImageContextWithOptions(self.PinView.frame.size, NO, 0);
+    [self.PinView.layer renderInContext: UIGraphicsGetCurrentContext()];
+    UIImage *TakeImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+
+//    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//        
+//        UIImageWriteToSavedPhotosAlbum(TakeImage, nil, nil, nil);
+//    });
+    
+    
+    return TakeImage;
     
 }
 
