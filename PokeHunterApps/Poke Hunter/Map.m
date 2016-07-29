@@ -36,13 +36,11 @@
     [self.Map setRegion:region animated:YES];
 
     [self GetPokes];
-    
-//    [self StartRefreshPins];
-
 }
 
 -(void)AddPins
 {
+    [pins removeAllObjects];
     int tag=0;
     for (NSArray *poke in pokes)
     {
@@ -80,6 +78,9 @@
          NSLog(@"pokes=%@",pokes);
          
          [self AddPins];
+         
+         [self StartRefreshPins];
+         
      } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
      {
          NSLog(@"Error: %@", error);
@@ -89,15 +90,11 @@
 
 -(void)StartRefreshPins
 {
-    PinsTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(TickUdpPing) userInfo:nil repeats:YES];
+    PinsTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(TickUpdatePins) userInfo:nil repeats:YES];
 }
 
 -(void)TickUdpPing
 {
-//    BasicMapAnnotation *ann = pins[0];
-//    ann.longitude = ann.longitude+0.000001;
-    
-    
     BasicMapAnnotation *annotation=[[BasicMapAnnotation alloc] initWithLatitude:34.0522342 andLongitude:-118.2436849 tag:0];
     annotation.title = @"Hello";
     
@@ -106,12 +103,19 @@
     
     [pins removeAllObjects];
     [pins addObject:annotation];
-    
-//    self.Map.annotations rep
-//    [self.Map removeAnnotations:pins];
-//    
-//    [self.Map addAnnotations:pins];
 }
+
+-(void)TickUpdatePins
+{
+    NSArray *old = [NSArray arrayWithArray:pins];
+    [self AddPins];
+    [self.Map addAnnotations:pins];
+    
+    [self.Map removeAnnotations:old];
+}
+
+
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -163,12 +167,31 @@
     NSString *currentDateString = [dateFormatter stringFromDate:currentDate];
     
     
+    
     NSArray *poke = pokes[((BasicMapAnnotation *)annotation).tag];
     NSString *line = poke[0];
     NSArray *infos =  [line componentsSeparatedByString:@":"];
+
+    long long now = [self getDateTimeTOMilliSeconds:[NSDate date]];
+//    long long time = 1469434091340;
+    long long hidetime = [infos[1] longLongValue];
     
     
-    self.TimeShow.text = currentDateString;
+    int livesecond = (int)((hidetime-now)/1000);
+    
+    if (livesecond<0)
+    {
+        livesecond = livesecond + 365942 + 1000;
+    }
+        
+    if (livesecond<0)
+    {
+//        self.TimeShow.text = @"";
+//        self.PokeShow.image = nil;
+        return nil;
+    }
+    
+    self.TimeShow.text = [NSString stringWithFormat:@"%02d:%02d",(livesecond/60),livesecond%60];
     self.PokeShow.image = [UIImage imageNamed:infos[0]];
     
     UIGraphicsBeginImageContextWithOptions(self.PinView.frame.size, NO, 0);
@@ -185,6 +208,27 @@
     return TakeImage;
     
 }
+
+
+//将时间戳转换为NSDate类型
+-(NSDate *)getDateTimeFromMilliSeconds:(long long) miliSeconds
+{
+    NSTimeInterval tempMilli = miliSeconds;
+    NSTimeInterval seconds = tempMilli/1000.0;//这里的.0一定要加上，不然除下来的数据会被截断导致时间不一致
+//    NSLog(@"传入的时间戳=%f",seconds);
+    return [NSDate dateWithTimeIntervalSince1970:seconds];
+}
+
+//将NSDate类型的时间转换为时间戳,从1970/1/1开始
+-(long long)getDateTimeTOMilliSeconds:(NSDate *)datetime
+{
+    NSTimeInterval interval = [datetime timeIntervalSince1970];
+//    NSLog(@"转换的时间戳=%f",interval);
+    long long totalMilliseconds = interval*1000 ;
+//    NSLog(@"totalMilliseconds=%llu",totalMilliseconds);
+    return totalMilliseconds;
+}
+
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)aView
 {
