@@ -46,8 +46,13 @@
     [self.Map addAnnotation:annotation];
     
     
-    
-    NSTimer *TestingTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(TickUdpPing) userInfo:nil repeats:YES];
+    [self StartRefreshPins];
+
+}
+
+-(void)StartRefreshPins
+{
+    PinsTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(TickUdpPing) userInfo:nil repeats:YES];
 }
 
 -(void)TickUdpPing
@@ -57,6 +62,7 @@
     
     
     BasicMapAnnotation *annotation=[[BasicMapAnnotation alloc] initWithLatitude:34.0522342 andLongitude:-118.2436849 tag:0];
+    annotation.title = @"Hello";
     
     [self.Map addAnnotation:annotation];
     [self.Map removeAnnotations:pins];
@@ -135,6 +141,19 @@
     return TakeImage;
     
 }
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)aView
+{
+    [PinsTimer invalidate];
+    PinsTimer = nil;
+}
+
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)aView
+{
+    [self StartRefreshPins];
+}
+
+
 
 //- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 //

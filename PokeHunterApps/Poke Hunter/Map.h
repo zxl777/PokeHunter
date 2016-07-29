@@ -14,6 +14,7 @@
     NSMutableArray *pins;
     bool flag;
     NSString *imgname;
+    NSTimer *PinsTimer;
 }
 
 @property (weak, nonatomic) IBOutlet MKMapView *Map;

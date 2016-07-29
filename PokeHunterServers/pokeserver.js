@@ -69,73 +69,6 @@ app.get('/v1/pokehub',function (req, res)
     });
 });
 
-//获得服务器列表 http://play.itoytoy.com:3000/servers?page=3
-app.get('/servers', getServersByPage);
-
-function getServersByPage(req, res)
-{
-    // 限定按一页20个结果浏览
-
-    var page = req.query.page ? parseInt(req.query.page):0;
-    var pageLimit = (req.query.limits)?parseInt(req.query.limits):20;
-
-    //ZSET servers:online 按score排序的
-
-    client.ZREVRANGE('servers:online', page*pageLimit, page*pageLimit+pageLimit-1, function(err,ids)
-    {
-        var multi = client.multi();
-
-        ids.forEach(function( id )
-        {
-            multi.hgetall('server:'+id,redis.print); //redis.print 是调试时用来显示redis命令执行结果的
-        });
-
-        multi.exec(function (err, replies)
-        {
-            res.json(replies);
-        });
-    });
-}
-
-app.get('/v1/servers',function (req, res)
-{
-    // 限定按一页20个结果浏览
-
-    var page = req.query.page ? parseInt(req.query.page):0;
-    var pageLimit = (req.query.limits)?parseInt(req.query.limits):20;
-
-
-
-    //ZSET servers:online 按score排序的
-
-    client.ZREVRANGE('servers:order_by_voted', page*pageLimit, page*pageLimit+pageLimit-1, function(err,ids)
-    {
-        var multi = client.multi();
-
-        ids.forEach(function( id )
-        {
-            multi.hgetall('server:'+id);
-        });
-
-        multi.exec(function (err, replies)
-        {
-            console.log(err);
-            res.json(replies);
-        });
-    });
-});
-
-
-app.get('/v1/server',function (req, res)
-{
-    var serverid = req.query.serverid;
-    client.HGETALL('server:'+serverid,function(err,info)
-    {
-        console.log(err);
-        res.json(info);
-    });
-});
-
 
 
 
@@ -155,49 +88,6 @@ app.post('/v1/checkin', function(req, res)
     });
 });
 
-
-// 投票时，提交的是用户md5，先检查今天是不是已经投票过了。然后检查是不是合法用户。都通过了，才真正vote
-app.post('/v1/vote', function(req, res)
-{
-    var md5 = req.body.qq;
-    var serverid= req.body.serverid;
-
-    client.get("md5:"+md5, function(err, reply) {
-
-        if (reply != null)
-        {
-            client.SISMEMBER('voted:today',md5, function(err, reply) {
-                console.log(md5);
-                if (reply == 0 || md5 == 'a61ee9b4f3570dc4e81e9ff7823fbc7d')
-                {
-                    console.log("验证通过，开始投票");
-
-                    var day = new Date(); //获取今天日期
-                    var today = (day.getMonth()+1)+"-"+day.getDate();
-
-                    client.multi()
-                    .SADD('voted:'+serverid,md5)
-                    //.ZINCRBY("servers:order_by_voted",1,serverid)
-                    .HINCRBY('server:'+serverid,"voted",1)
-                    .HINCRBY('votecount:'+serverid,today,1)
-                    .SADD('voted:today',md5)
-                    .exec(function (err, replies)
-                    {
-                        console.log(err);
-                        console.log(replies);
-                        res.json({"message":"Thanks for your vote!"});
-                    });
-
-
-                }
-                else
-                    res.json({"message":"You have voted today, please come back tomorrow to vote."});
-            });
-        }
-        else
-            res.json({"message":"Thanks for your vote!!"});
-    });
-});
 
 client.on("error", function (err) {
     console.log("REDIS Error " + err);
