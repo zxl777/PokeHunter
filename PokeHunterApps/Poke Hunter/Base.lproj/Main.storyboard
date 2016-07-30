@@ -23,8 +23,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="190" id="dvd-Pd-KHd"/>
                                 </constraints>
-                                <string key="text">The official Pokémon Go login servers are currently unstable or offline which impacts our service. Scanning may take longer than expected until issues are resolved.
-
+                                <string key="text">
 Tap Scan Button To Find Pokémon.
 You can only scan once every 30 seconds</string>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>

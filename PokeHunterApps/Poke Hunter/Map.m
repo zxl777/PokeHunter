@@ -196,7 +196,15 @@
     }
     
     self.TimeShow.text = [NSString stringWithFormat:@"%02d:%02d",(livesecond/60),livesecond%60];
-    self.PokeShow.image = [UIImage imageNamed:infos[0]];
+    
+    NSString *EnableColorPokemon = [[APIClient api] getRemoteStr:@"EnableColorPokemon" defaultStr:@"NO"];
+    
+    EnableColorPokemon = @"YES";
+    
+    if ([EnableColorPokemon isEqualToString:@"NO"])
+        self.PokeShow.image = [UIImage imageNamed:infos[0]];
+    else
+        self.PokeShow.image = [UIImage imageNamed:[infos[0] stringByAppendingString:@"_Color"]];
     
     UIGraphicsBeginImageContextWithOptions(self.PinView.frame.size, NO, 0);
     [self.PinView.layer renderInContext: UIGraphicsGetCurrentContext()];
