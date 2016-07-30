@@ -138,18 +138,22 @@
                                                           reuseIdentifier:@"identifier"];
     
     // create a disclosure button for map kit
-    UIButton *disclosure = [UIButton buttonWithType:UIButtonTypeContactAdd];
+//    UIButton *disclosure = [UIButton buttonWithType:UIButtonTypeContactAdd];
     
-    [disclosure addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
-                                                                             action:@selector(disclosureTapped)]];
-    view.rightCalloutAccessoryView = disclosure;
+//    [disclosure addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self
+//                                                                             action:@selector(disclosureTapped)]];
+//    view.rightCalloutAccessoryView = disclosure;
+    
+    
+//    UILabel *DissTime = [[UILabel alloc] init];
+//    DissTime.text = @"AM9:38";
     
     view.enabled = YES;
 //    view.image = [UIImage imageNamed:imgname];
     
     view.image =  [self GetImg:annotation];
     
-    view.canShowCallout = YES;
+    view.canShowCallout = NO;
     
     return view;
 }
