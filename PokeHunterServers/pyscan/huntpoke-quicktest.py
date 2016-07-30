@@ -90,12 +90,18 @@ def init_config():
             load.update(json.load(data))
 
     # Read passed in Arguments
+
+
     required = lambda x: not x in load
     parser.add_argument("-a", "--auth_service", help="Auth Service ('ptc' or 'google')",
         required=required("auth_service"))
     parser.add_argument("-u", "--username", help="Username", required=required("username"))
     parser.add_argument("-p", "--password", help="Password", required=required("password"))
-    parser.add_argument("-l", "--location", help="Location", required=required("location"))
+    # parser.add_argument("-l", "--location", help="Location", required=required("location"))
+
+    parser.add_argument("-j", "--longitude", help="Longitude", required=required("longitude"))
+    parser.add_argument("-w", "--latitude", help="Latitude", required=required("latitude"))
+
     parser.add_argument("-d", "--debug", help="Debug Mode", action='store_true')
     parser.add_argument("-t", "--test", help="Only parse the specified location", action='store_true')
     parser.set_defaults(DEBUG=False, TEST=False)
@@ -134,7 +140,9 @@ def main():
 
     # position = get_pos_by_name(config.location)
 
-    position = [34.0522342,-118.2436849,0.0];
+    # position = [34.0522342,-118.2436849,0.0];
+
+    position = [float(config.latitude),float(config.longitude),0.0];
 
     if not position:
         return
@@ -171,7 +179,7 @@ def find_poi(api, lat, lng):
     step_limit = 49
 
     coords = generate_spiral(lat, lng, step_size, step_limit)
-    del coords[2:] #截短螺旋路径，就剩下一步
+    # del coords[2:] #截短螺旋路径，就剩下一步
 
     for coord in coords:
         lat = coord['lat']

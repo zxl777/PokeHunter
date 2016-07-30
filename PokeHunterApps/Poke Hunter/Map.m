@@ -38,6 +38,13 @@
     [self GetPokes];
 }
 
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [PinsTimer invalidate];
+    PinsTimer = nil;
+}
+
 -(void)AddPins
 {
     [pins removeAllObjects];
@@ -179,11 +186,8 @@
     
     int livesecond = (int)((hidetime-now)/1000);
     
-    if (livesecond<0)
-    {
-        livesecond = livesecond + 365942 + 1000;
-    }
-        
+//    if (livesecond<0) livesecond = livesecond + 365942 + 1000;
+    
     if (livesecond<0)
     {
 //        self.TimeShow.text = @"";

@@ -172,6 +172,7 @@
 		3388D0D61D49B839009BC34B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3388D0D41D49B839009BC34B /* Main.storyboard */; };
 		3388D0D81D49B839009BC34B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3388D0D71D49B839009BC34B /* Assets.xcassets */; };
 		3388D0DB1D49B839009BC34B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3388D0D91D49B839009BC34B /* LaunchScreen.storyboard */; };
+		338DCB0F1D4BAA1C002DBE35 /* Scan.m in Sources */ = {isa = PBXBuildFile; fileRef = 338DCB0E1D4BAA1C002DBE35 /* Scan.m */; };
 		7D7E396BB185CDBB647DA07C /* Pods_Poke_Hunter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC68C8CFF6AC0B5D24B5C651 /* Pods_Poke_Hunter.framework */; };
 /* End PBXBuildFile section */
 
@@ -350,6 +351,8 @@
 		3388D0D71D49B839009BC34B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3388D0DA1D49B839009BC34B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3388D0DC1D49B839009BC34B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		338DCB0D1D4BAA1C002DBE35 /* Scan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scan.h; sourceTree = "<group>"; };
+		338DCB0E1D4BAA1C002DBE35 /* Scan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scan.m; sourceTree = "<group>"; };
 		5C6F06C0F824EF7C481B4870 /* Pods-Poke Hunter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Poke Hunter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Poke Hunter/Pods-Poke Hunter.debug.xcconfig"; sourceTree = "<group>"; };
 		940F60965D0BB8327A1B79B7 /* Pods-Poke Hunter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Poke Hunter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Poke Hunter/Pods-Poke Hunter.release.xcconfig"; sourceTree = "<group>"; };
 		DC68C8CFF6AC0B5D24B5C651 /* Pods_Poke_Hunter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Poke_Hunter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -528,6 +531,8 @@
 		3388D0BF1D49B839009BC34B = {
 			isa = PBXGroup;
 			children = (
+				338DCB0D1D4BAA1C002DBE35 /* Scan.h */,
+				338DCB0E1D4BAA1C002DBE35 /* Scan.m */,
 				33078DBF1D4B983100367B1F /* Help.h */,
 				33078DC01D4B983100367B1F /* Help.m */,
 				33078C901D4B4EEF00367B1F /* pokepngs */,
@@ -880,6 +885,7 @@
 				33078B4B1D49C51700367B1F /* CALayer+XibConfiguration.m in Sources */,
 				3388D0D01D49B839009BC34B /* AppDelegate.m in Sources */,
 				33078DC11D4B983100367B1F /* Help.m in Sources */,
+				338DCB0F1D4BAA1C002DBE35 /* Scan.m in Sources */,
 				3388D0CD1D49B839009BC34B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

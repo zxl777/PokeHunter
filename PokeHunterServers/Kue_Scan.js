@@ -5,7 +5,7 @@ var redis = require('redis');           // https://github.com/NodeRedis/node_red
 var client = redis.createClient();
 
 var jobs = kue.createQueue({
-    prefix: 'q',
+    prefix: 'scan',
     redis: {
         port: 6379,
         host: '127.0.0.1',
@@ -19,9 +19,11 @@ var jobs = kue.createQueue({
 
 
 //自动测试队列里的任务
-jobs.process( 'HuntPoint', 1, function ( job, done ) {
-    // var host = job.data.server.split(':');
-    // var id = job.data.server;
+jobs.process( 'HuntPoint', 1, function ( job, done )
+{
+    var longitude=job.data.longitude.toString();
+    var latitude =job.data.latitude.toString();
+    console.log(longitude);
 
 
     var python = require('child_process').spawn(
@@ -29,7 +31,7 @@ jobs.process( 'HuntPoint', 1, function ( job, done ) {
         // second argument is array of parameters, e.g.:
         // ["./pyscan/spiral_poi_search.py"
             ["./pyscan/huntpoke-quicktest.py"
-            , '-a', 'google', '-u', 'zhangxiaolong@itoytoy.com', '-p', '18879bbb', '-l', '"Los Angeles"']
+            , '-a', 'google', '-u', 'zhangxiaolong@itoytoy.com', '-p', '18879bbb', '-j',longitude,'-w',latitude]
     );
     var output = "";
     python.stdout.on('data', function (data) {

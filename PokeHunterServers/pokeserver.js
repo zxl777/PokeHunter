@@ -29,9 +29,9 @@ app.post('/v1/addscanjob', function(req, res)
             "type": "HuntPoint",
             "data":
             {
-                "title": "Hunt in : "+req.body.placename,
-                "placename":req.body.placename,
-                "coord":req.body.coord
+                "title": "Hunt Scan",
+                "longitude":req.body.longitude,
+                "latitude":req.body.latitude,
             },
             "options" : {
                 "attempts": 3,

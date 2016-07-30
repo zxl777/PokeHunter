@@ -3,8 +3,104 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Dispatch Pokémon Hunter-->
+        <scene sceneID="hI0-IQ-zEp">
+            <objects>
+                <viewController id="AHQ-q7-py6" customClass="Scan" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="WAb-DN-KQS"/>
+                        <viewControllerLayoutGuide type="bottom" id="phM-mB-vFK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="r1L-Fo-AUB">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="8" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QIU-QR-oxf">
+                                <rect key="frame" x="26" y="90" width="323" height="190"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="190" id="dvd-Pd-KHd"/>
+                                </constraints>
+                                <string key="text">The official Pokémon Go login servers are currently unstable or offline which impacts our service. Scanning may take longer than expected until issues are resolved.
+
+Tap Scan Button To Find Pokémon.
+You can only scan once every 30 seconds</string>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="ULy-aN-D8U">
+                                <rect key="frame" x="26" y="299" width="323" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="laH-ak-Aax"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="Scan On The Map"/>
+                                    <segment title="Scan Near Me"/>
+                                </segments>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FBG-sV-wwt">
+                                <rect key="frame" x="26" y="344" width="323" height="44"/>
+                                <color key="backgroundColor" red="1" green="0.28351328149999999" blue="0.25102748270000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="YVB-tv-6k1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="24"/>
+                                <state key="normal" title="Scan">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
+                                        <color key="value" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="TapedScan:" destination="AHQ-q7-py6" eventType="touchUpInside" id="hkI-RR-L02"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="QIU-QR-oxf" secondAttribute="trailing" constant="26" id="01v-qB-pSg"/>
+                            <constraint firstItem="FBG-sV-wwt" firstAttribute="top" secondItem="ULy-aN-D8U" secondAttribute="bottom" constant="17" id="2cR-hx-Sxd"/>
+                            <constraint firstAttribute="trailing" secondItem="FBG-sV-wwt" secondAttribute="trailing" constant="26" id="JD8-Nc-CIE"/>
+                            <constraint firstItem="ULy-aN-D8U" firstAttribute="top" secondItem="QIU-QR-oxf" secondAttribute="bottom" constant="19" id="KFo-YF-mvh"/>
+                            <constraint firstItem="FBG-sV-wwt" firstAttribute="top" secondItem="ULy-aN-D8U" secondAttribute="bottom" constant="17" id="NNg-Ng-GA4"/>
+                            <constraint firstAttribute="trailing" secondItem="ULy-aN-D8U" secondAttribute="trailing" constant="26" id="QYa-ch-aX8"/>
+                            <constraint firstItem="ULy-aN-D8U" firstAttribute="leading" secondItem="r1L-Fo-AUB" secondAttribute="leading" constant="26" id="Ym4-MI-RL9"/>
+                            <constraint firstItem="QIU-QR-oxf" firstAttribute="top" secondItem="WAb-DN-KQS" secondAttribute="bottom" constant="26" id="fss-tF-UYV"/>
+                            <constraint firstItem="FBG-sV-wwt" firstAttribute="leading" secondItem="r1L-Fo-AUB" secondAttribute="leadingMargin" constant="50" id="g72-b4-kg5"/>
+                            <constraint firstItem="FBG-sV-wwt" firstAttribute="leading" secondItem="r1L-Fo-AUB" secondAttribute="leading" constant="26" id="t0f-ga-bib"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FBG-sV-wwt" secondAttribute="trailing" constant="50" id="vfK-Xj-9dW"/>
+                            <constraint firstItem="QIU-QR-oxf" firstAttribute="leading" secondItem="r1L-Fo-AUB" secondAttribute="leading" constant="26" id="x4v-hb-VMU"/>
+                            <constraint firstItem="FBG-sV-wwt" firstAttribute="centerY" secondItem="r1L-Fo-AUB" secondAttribute="centerY" id="yW5-b9-kLa"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="NNg-Ng-GA4"/>
+                                <exclude reference="g72-b4-kg5"/>
+                                <exclude reference="vfK-Xj-9dW"/>
+                                <exclude reference="yW5-b9-kLa"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" title="Dispatch Pokémon Hunter" id="ktH-pM-nsU"/>
+                    <connections>
+                        <outlet property="ScanTips" destination="QIU-QR-oxf" id="gpE-uX-x63"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1hm-5s-ect" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1568.5" y="-732.5"/>
+        </scene>
         <!--Map-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -36,7 +132,7 @@
                                             <constraint firstAttribute="height" constant="21" id="N1b-lO-rb3"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="AppleSDGothicNeo-Light" family="Apple SD Gothic Neo" pointSize="11"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="layer.borderUIColor">
@@ -95,6 +191,7 @@
                         <barButtonItem key="leftBarButtonItem" image="scan.png" id="bIF-HD-6iS">
                             <connections>
                                 <action selector="TapedScan:" destination="BYZ-38-t0r" id="KqX-cs-Hm0"/>
+                                <segue destination="AHQ-q7-py6" kind="show" id="hZf-hr-mGi"/>
                             </connections>
                         </barButtonItem>
                         <view key="titleView" contentMode="scaleToFill" id="EwY-l9-WHI">
@@ -104,7 +201,7 @@
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Poke Hunter" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMh-L3-E3i">
                                     <rect key="frame" x="0.0" y="0.0" width="219" height="33"/>
                                     <fontDescription key="fontDescription" name="Noteworthy-Bold" family="Noteworthy" pointSize="26"/>
-                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
@@ -165,7 +262,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yqz-id-r0E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1568.5" y="-389.5"/>
+            <point key="canvasLocation" x="1568.5" y="162.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="I3e-H5-Onk">
