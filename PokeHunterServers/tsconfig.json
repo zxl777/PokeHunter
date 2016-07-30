@@ -1,0 +1,92 @@
+{
+  "name": "My Custom PoGo-Maps Extension",
+  "hostname": "li259-172",
+  "pid": 9708,
+  "level": 20,
+  "res": {
+    "statusCode": 200,
+    "header": "HTTP/1.1 200 OK\r\nAccess-Control-Allow-Origin: *\r\nAccess-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time\r\nAccess-Control-Allow-Methods: POST, GET\r\nAccess-Control-Expose-Headers: Api-Version, Request-Id, Response-Time\r\nConnection: Keep-Alive\r\nDate: Sat, 30 Jul 2016 10:37:36 GMT\r\nServer: PoGo Extension Server\r\nRequest-Id: 73807248-bf14-4e68-9970-3a423d8ee146\r\nResponse-Time: 1\r\nTransfer-Encoding: chunked\r\n\r\n"
+  },
+  "msg": "finished",
+  "time": "2016-07-30T10:37:36.351Z",
+  "v": 0
+}
+{
+  "name": "My Custom PoGo-Maps Extension",
+  "hostname": "li259-172",
+  "pid": 9708,
+  "level": 20,
+  "req": {
+    "method": "POST",
+    "url": "/",
+    "headers": {
+      "host": "127.0.0.1:3021",
+      "connection": "keep-alive",
+      "accept-encoding": "gzip, deflate",
+      "accept": "*/*",
+      "user-agent": "python-requests/2.10.0",
+      "content-length": "225",
+      "content-type": "application/json"
+    },
+    "remoteAddress": "::ffff:127.0.0.1",
+    "remotePort": 48774
+  },
+  "msg": "start",
+  "time": "2016-07-30T10:37:36.356Z",
+  "v": 0
+}
+{
+  "name": "My Custom PoGo-Maps Extension",
+  "hostname": "li259-172",
+  "pid": 9708,
+  "level": 20,
+  "res": {
+    "statusCode": 200,
+    "header": "HTTP/1.1 200 OK\r\nAccess-Control-Allow-Origin: *\r\nAccess-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time\r\nAccess-Control-Allow-Methods: POST, GET\r\nAccess-Control-Expose-Headers: Api-Version, Request-Id, Response-Time\r\nConnection: Keep-Alive\r\nDate: Sat, 30 Jul 2016 10:37:36 GMT\r\nServer: PoGo Extension Server\r\nRequest-Id: c0e53306-cac4-4009-8b04-7f7676465fcc\r\nResponse-Time: 4\r\nTransfer-Encoding: chunked\r\n\r\n"
+  },
+  "msg": "finished",
+  "time": "2016-07-30T10:37:36.361Z",
+  "v": 0
+}
+{
+  "name": "My Custom PoGo-Maps Extension",
+  "hostname": "li259-172",
+  "pid": 9708,
+  "level": 20,
+  "req": {
+    "method": "POST",
+    "url": "/",
+    "headers": {
+      "host": "127.0.0.1:3021",
+      "connection": "keep-alive",
+      "accept-encoding": "gzip, deflate",
+      "accept": "*/*",
+      "user-agent": "python-requests/2.10.0",
+      "content-length": "223",
+      "content-type": "application/json"
+    },
+    "remoteAddress": "::ffff:127.0.0.1",
+    "remotePort": 48778
+  },
+  "msg": "start",
+  "time": "2016-07-30T10:37:41.477Z",
+  "v": 0
+}
+{
+  "name": "My Custom PoGo-Maps Extension",
+  "hostname": "li259-172",
+  "pid": 9708,
+  "level": 20,
+  "res": {
+    "statusCode": 200,
+    "header": "HTTP/1.1 200 OK\r\nAccess-Control-Allow-Origin: *\r\nAccess-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time\r\nAccess-Control-Allow-Methods: POST, GET\r\nAccess-Control-Expose-Headers: Api-Version, Request-Id, Response-Time\r\nConnection: Keep-Alive\r\nDate: Sat, 30 Jul 2016 10:37:41 GMT\r\nServer: PoGo Extension Server\r\nRequest-Id: cfec99c0-fe5b-410c-9ee1-2dbe249fa0d7\r\nResponse-Time: 2\r\nTransfer-Encoding: chunked\r\n\r\n"
+  },
+  "msg": "finished",
+  "time": "2016-07-30T10:37:41.479Z",
+  "v": 0
+}
+^@{"name": "My Custom PoGo-Maps Extension", "hostname": "li259-172","pid": 9708, "level": 20, "req":{"method": "POST", "url": "/", "headers": {"host": "127.0.0.1:3021", "connection": "keep-alive","accept-encoding": "gzip, deflate", "accept": "*/*", "user-agent":"python-requests/2.10.0", "content-length": "227", "content-type": "application/json"}, "remoteAddress": "::ffff:127.0.0.1", "remotePort": 48786},"msg": "start", "time": "2016-07-30T10:37:56.825Z", "v":0
+}
+{
+"name": "My Custom PoGo-Maps Extension", "hostname": "li259-172", "pid": 9708, "level": 20, "res": {"statusCode": 200, "header": "HTTP/1.1 200 OK\r\nAccess-Control-Allow-Origin: *\r\nAccess-Control-Allow-Headers: Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, Api-Version, Response-Time\r\nAccess-Control-Allow-Methods: POST, GET\r\nAccess-Control-Expose-Headers: Api-Version, Request-Id, Response-Time\r\nConnection: Keep-Alive\r\nDate: Sat, 30 Jul 2016 10:37:56 GMT\r\nServer: PoGo Extension Server\r\nRequest-Id: 4ef573cf-7d00-46d4-968a-1d63916362e7\r\nResponse-Time: 0\r\nTransfer-Encoding: chunked\r\n\r\n"}, "msg": "finished", "time": "2016-07-30T10:37:56.826Z", "v": 0
+}

@@ -52,6 +52,11 @@ app.post('/v1/addscanjob', function(req, res)
 });
 
 
+app.get('/v1/webhook',function (req, res)
+{
+    console.log(req.body);
+});
+
 app.get('/v1/pokehub',function (req, res)
 {
     var coord = req.query.coord;
