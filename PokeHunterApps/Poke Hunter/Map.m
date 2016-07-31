@@ -19,6 +19,9 @@
     [super viewDidLoad];
     pins = [NSMutableArray array];
     pokes = [NSMutableArray array];
+    
+    self.locationManager = [[CLLocationManager alloc] init];
+    [self.locationManager requestWhenInUseAuthorization];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -29,6 +32,8 @@
     self.Map.showsScale = YES; // 是否显示比例尺
     self.Map.userTrackingMode = MKUserTrackingModeFollowWithHeading;
     
+    [self.Map setShowsUserLocation:YES];
+    
     CLLocationCoordinate2D center =  CLLocationCoordinate2DMake(34.0522342,-118.2436849);
     MKCoordinateSpan span = MKCoordinateSpanMake(0.01, 0.01);
     MKCoordinateRegion region = MKCoordinateRegionMake(center, span);
@@ -36,6 +41,18 @@
     [self.Map setRegion:region animated:YES];
 
     [self GetPokes];
+}
+
+-(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    CLLocationCoordinate2D loc = [userLocation coordinate];
+    //放大地图到自身的经纬度位置。
+//    MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(loc, 250, 250);
+    
+    MKCoordinateSpan span = MKCoordinateSpanMake(0.01, 0.01);
+    MKCoordinateRegion region = MKCoordinateRegionMake(loc, span);
+    
+    [self.Map setRegion:region animated:YES];
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -133,6 +150,8 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
 {
+    if([annotation class] == MKUserLocation.class)
+        return nil;
     // create a proper annotation view, be lazy and don't use the reuse identifier
     MKAnnotationView *view = [[MKAnnotationView alloc] initWithAnnotation:annotation
                                                           reuseIdentifier:@"identifier"];
@@ -167,15 +186,15 @@
 
 -(UIImage *)GetImg:(id<MKAnnotation>)annotation
 {
-    //获取系统当前时间
-    NSDate *currentDate = [NSDate date];
-    //用于格式化NSDate对象
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    //设置格式：zzz表示时区
-//    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
-    [dateFormatter setDateFormat:@"mm:ss"];
-    //NSDate转NSString
-    NSString *currentDateString = [dateFormatter stringFromDate:currentDate];
+//    //获取系统当前时间
+//    NSDate *currentDate = [NSDate date];
+//    //用于格式化NSDate对象
+//    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+//    //设置格式：zzz表示时区
+////    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss zzz"];
+//    [dateFormatter setDateFormat:@"mm:ss"];
+//    //NSDate转NSString
+//    NSString *currentDateString = [dateFormatter stringFromDate:currentDate];
     
     
     
@@ -221,6 +240,8 @@
     return TakeImage;
     
 }
+
+
 
 
 //将时间戳转换为NSDate类型

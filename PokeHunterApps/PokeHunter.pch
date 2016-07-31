@@ -12,6 +12,7 @@
 @import FirebaseCrash;
 @import CocoaSecurity;
 @import MapKit;
+@import CoreLocation;
 
 
 #ifndef PokeHunter_pch

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
-@interface Map : UIViewController
+@interface Map : UIViewController <CLLocationManagerDelegate>
 {
     NSMutableArray *pins;
     bool flag;
@@ -17,6 +17,8 @@
     NSTimer *PinsTimer;
     NSMutableArray *pokes;
 }
+
+@property (strong,nonatomic) CLLocationManager *locationManager;
 
 @property (weak, nonatomic) IBOutlet MKMapView *Map;
 
