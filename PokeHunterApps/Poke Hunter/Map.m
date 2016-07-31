@@ -39,7 +39,11 @@
     MKCoordinateRegion region = MKCoordinateRegionMake(center, span);
     
     [self.Map setRegion:region animated:YES];
-
+    
+    NSLog(@"屏幕中心坐标:%f,%f",self.Map.centerCoordinate.longitude,self.Map.centerCoordinate.latitude);
+    
+    
+    
     [self GetPokes];
 }
 
