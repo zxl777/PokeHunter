@@ -51,10 +51,37 @@ app.post('/v1/addscanjob', function(req, res)
     });
 });
 
+/*
+ python runserver.py -a google -u zhangxiaolong@itoytoy.com -p 18879bbb -st 10 -H 0.0.0.0 -P 3888 -k AIzaSyCOmGnDjBbML8TYFSBG1adUJ-HdRl0X8r0 -l "34.0522342,-118.2436849" --webhook http://127.0.0.1:8080/v1/webhook
 
-app.get('/v1/webhook',function (req, res)
+
+ POST /v1/webhook 200 0.698 ms - 11
+ { message:
+ { disappear_time: 1469854766,
+ pokemon_id: 19,
+ spawnpoint_id: '89b7b7c146d',
+ longitude: -77.03814085343276,
+ latitude: 38.9105690725965,
+ encounter_id: 'NzQxNjQwNzc1OTYwNjY4NDA0NQ==' },
+ type: 'pokemon' }
+ */
+app.post('/v1/webhook',function (req, res)
 {
-    console.log(req.body);
+    // console.log(req.body);
+
+    var poke = req.body.message;
+
+
+    client.GEOADD(
+        'PokesGEO',
+        poke.longitude,
+        poke.latitude,
+        poke.pokemon_id+':'+poke.disappear_time+':'+poke.spawnpoint_id
+        ,function(err,info)
+        {
+            console.log('Add PokesGEO:经度',poke.longitude,',纬度',poke.latitude,'消失时间戳:',poke.disappear_time);
+            res.json({"info":info});
+        });
 });
 
 app.get('/v1/pokehub',function (req, res)

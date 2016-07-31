@@ -69,7 +69,7 @@
 {
     [SVProgressHUD show];
     
-    [[APIClient api] GET:@"v1/pokes?longitude=-118.23&latitude=34.048&m=1000"
+    [[APIClient api] GET:@"v1/pokes?longitude=-118.247&latitude=34.047&m=1000"
               parameters:nil
                 progress:^(NSProgress * _Nonnull downloadProgress) {}
                  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
@@ -183,19 +183,16 @@
     NSString *line = poke[0];
     NSArray *infos =  [line componentsSeparatedByString:@":"];
 
-    long long now = [self getDateTimeTOMilliSeconds:[NSDate date]];
-//    long long time = 1469434091340;
+    //统一用秒做单位，不用毫秒。
+    long long now = [[NSDate date] timeIntervalSince1970];
     long long hidetime = [infos[1] longLongValue];
     
     
-    int livesecond = (int)((hidetime-now)/1000);
-    
-//    if (livesecond<0) livesecond = livesecond + 365942 + 1000;
+    int livesecond = (int)(hidetime-now);
     
     if (livesecond<0)
     {
-//        self.TimeShow.text = @"";
-//        self.PokeShow.image = nil;
+        livesecond =-1;
         return nil;
     }
     
