@@ -16,6 +16,7 @@
 
 @property (nonatomic, readwrite) NSString *CustomerRetention;
 
+@property (nonatomic, readwrite) int ScanWhere;
 
 + (instancetype)api;
 -(void)upload:(NSString *)filename;

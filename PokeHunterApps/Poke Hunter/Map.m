@@ -22,6 +22,7 @@
     
     self.locationManager = [[CLLocationManager alloc] init];
     [self.locationManager requestWhenInUseAuthorization];
+    [APIClient api].ScanWhere = -1;
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -42,9 +43,10 @@
     
     NSLog(@"屏幕中心坐标:%f,%f",self.Map.centerCoordinate.longitude,self.Map.centerCoordinate.latitude);
     
-    
-    
-    [self GetPokes];
+    if ([APIClient api].ScanWhere > -1)
+        [self StartScanTimer];
+    else
+        [self GetPokes];
 }
 
 -(void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
@@ -62,8 +64,8 @@
 -(void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [PinsTimer invalidate];
-    PinsTimer = nil;
+    [self StopPinsTimer];
+    [self StopScanTimer];
 }
 
 -(void)AddPins
@@ -88,9 +90,13 @@
 
 -(void)GetPokes
 {
-    [SVProgressHUD show];
+    [self StopPinsTimer];
     
-    [[APIClient api] GET:@"v1/pokes?longitude=-118.247&latitude=34.047&m=1000"
+    [SVProgressHUD show];
+//    NSLog(@"屏幕中心坐标:%f,%f",self.Map.centerCoordinate.longitude,self.Map.centerCoordinate.latitude);
+    NSString *Uri = [NSString stringWithFormat:@"v1/pokes?longitude=%f&latitude=%f&m=3000",self.Map.centerCoordinate.longitude,self.Map.centerCoordinate.latitude];
+    
+    [[APIClient api] GET:Uri
               parameters:nil
                 progress:^(NSProgress * _Nonnull downloadProgress) {}
                  success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
@@ -120,6 +126,57 @@
 {
     PinsTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(TickUpdatePins) userInfo:nil repeats:YES];
 }
+
+-(void)StartScanTimer
+{
+    if ([APIClient api].ScanWhere==0) //搜索地图中央
+    {
+        [self.Map setShowsUserLocation:NO];
+    }
+    else if ([APIClient api].ScanWhere==1) //搜索玩家中央
+    {
+        [self.Map setShowsUserLocation:YES];
+    }
+    
+    //    [[APIClient api] POST:@"/v1/addscanjob"
+    //               parameters:@{
+    //                            @"address":self.address.text,
+    //                            @"port":self.port.text,
+    //                            @"mail":self.mail.text
+    //                            }
+    //                 progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
+    //     {
+    //         NSLog(@"%@ %@", task, responseObject);
+    //         [SVProgressHUD showInfoWithStatus:responseObject [@"message"]];
+    //         if ([responseObject[@"succeed"] intValue] == 1)
+    //             [self.navigationController popViewControllerAnimated:YES];
+    //         [APIClient GA:@"成功提交了一个服务器"];
+    //     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
+    //     {
+    //         NSLog(@"Error: %@", error);
+    //     }];
+    
+    ScanCount = 0;
+    ScanTimer = [NSTimer scheduledTimerWithTimeInterval:5 target:self selector:@selector(ScanPoke) userInfo:nil repeats:YES];
+}
+
+-(void)StopScanTimer
+{
+    [ScanTimer invalidate];
+    ScanTimer = nil;
+}
+
+-(void)ScanPoke
+{
+    ScanCount++;
+    if (ScanCount>10)
+    {
+        [self StopScanTimer];
+    }
+    else
+        [self GetPokes];
+}
+
 
 -(void)TickUdpPing
 {
@@ -223,7 +280,7 @@
     
     NSString *EnableColorPokemon = [[APIClient api] getRemoteStr:@"EnableColorPokemon" defaultStr:@"NO"];
     
-    EnableColorPokemon = @"YES";
+//    EnableColorPokemon = @"YES";
     
     if ([EnableColorPokemon isEqualToString:@"NO"])
         self.PokeShow.image = [UIImage imageNamed:infos[0]];
@@ -268,10 +325,15 @@
 }
 
 
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)aView
+-(void)StopPinsTimer
 {
     [PinsTimer invalidate];
     PinsTimer = nil;
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)aView
+{
+    [self StopPinsTimer];
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)aView

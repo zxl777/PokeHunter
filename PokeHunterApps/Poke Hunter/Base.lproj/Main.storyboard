@@ -94,6 +94,7 @@ You can only scan once every 30 seconds</string>
                     <navigationItem key="navigationItem" title="Dispatch Pokémon Hunter" id="ktH-pM-nsU"/>
                     <connections>
                         <outlet property="ScanTips" destination="QIU-QR-oxf" id="gpE-uX-x63"/>
+                        <outlet property="ScanWhere" destination="ULy-aN-D8U" id="Wtx-5I-gjG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1hm-5s-ect" userLabel="First Responder" sceneMemberID="firstResponder"/>

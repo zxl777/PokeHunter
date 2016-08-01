@@ -30,28 +30,20 @@
     // Dispose of any resources that can be recreated.
 }
 
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+//    [SVProgressHUD dismiss];
+}
+
 - (IBAction)TapedScan:(id)sender
 {
-    [SVProgressHUD showWithStatus:@"Checking..."];
+    [SVProgressHUD showWithStatus:@"Scanning..."];
     
+    [APIClient api].ScanWhere = (int)self.ScanWhere.selectedSegmentIndex;
     
-//    [[APIClient api] POST:@"/v1/addscanjob"
-//               parameters:@{
-//                            @"address":self.address.text,
-//                            @"port":self.port.text,
-//                            @"mail":self.mail.text
-//                            }
-//                 progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject)
-//     {
-//         NSLog(@"%@ %@", task, responseObject);
-//         [SVProgressHUD showInfoWithStatus:responseObject [@"message"]];
-//         if ([responseObject[@"succeed"] intValue] == 1)
-//             [self.navigationController popViewControllerAnimated:YES];
-//         [APIClient GA:@"成功提交了一个服务器"];
-//     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error)
-//     {
-//         NSLog(@"Error: %@", error);
-//     }];
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 @end

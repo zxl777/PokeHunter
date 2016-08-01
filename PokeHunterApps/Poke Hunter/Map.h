@@ -16,6 +16,10 @@
     NSString *imgname;
     NSTimer *PinsTimer;
     NSMutableArray *pokes;
+    
+    
+    NSTimer *ScanTimer;
+    int ScanCount;
 }
 
 @property (strong,nonatomic) CLLocationManager *locationManager;

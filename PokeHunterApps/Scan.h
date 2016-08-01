@@ -13,4 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *ScanTips;
 
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *ScanWhere;
+
 @end
