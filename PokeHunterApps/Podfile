@@ -17,6 +17,8 @@ target "Poke Hunter" do
     
     pod 'SSKeychain' #https://github.com/soffes/SSKeychain
     pod 'CocoaSecurity' #https://github.com/kelp404/CocoaSecurity
+    
+    pod 'MobileVLCKit'
  end
 
 
